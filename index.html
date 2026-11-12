@@ -1,0 +1,2016 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#21182f">
+<title>8Dream</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+const CONFIG={
+ namaKelas:"8Dream",
+ label:"Kelas 8D, tahun ajaran 2026/2027",
+ tagline:"Tempat semua cerita kelas kami tersimpan.",
+
+ introVideo:"https://files.catbox.moe/g2u0i3.mp4",
+ thumbnailVideo:"https://files.catbox.moe/g2u0i3.mp4",
+
+ autoPlayLagu:true,
+
+ walikelas:{
+  nama:"Bu Listiyaningsih, S.Pd., M.Pd.",
+  jabatan:"Wali Kelas 8D",
+  foto:"https://files.catbox.moe/auvls9.jpg",
+  mapel:"IPS",
+  jumlahSiswa:31,
+  motto:"Adab dahulu, baru ilmu"
+ },
+
+ struktur:[
+  {peran:"Ketua Kelas",nama:"Rafii"},
+  {peran:"Wakil Ketua",nama:"Alva"},
+  {peran:"Sekretaris",nama:"Kasih & Raisya"},
+  {peran:"Bendahara",nama:"Cinta & Aqila"}
+ ],
+
+ foto:[
+  "https://files.catbox.moe/2tvcrx.jpg",
+  "https://files.catbox.moe/b94zcb.jpg",
+  "https://files.catbox.moe/7irhat.jpg",
+  "https://files.catbox.moe/0halpb.jpg",
+  "https://files.catbox.moe/lwtwyy.jpg",
+  "https://files.catbox.moe/kjcx82.jpg",
+  "https://files.catbox.moe/yz87es.jpg",
+  "https://files.catbox.moe/prn6ap.jpg",
+  "https://ziperrimg2.lovable.app/f/7wwgi6ck3r.jpg",
+  "https://ziperrimg2.lovable.app/f/eud3p7ygkb.jpg"
+ ],
+
+ video:[
+  {src:"https://ziperrimg2.lovable.app/f/ahue5rqi2s.mp4",caption:"Video 8Dream"},
+  {src:"https://ziperrimg2.lovable.app/f/7i8xhc2qfd.mp4",caption:"Kenangan 8D"},
+  {src:"https://ziperrimg2.lovable.app/f/j49vcqrarm.mp4",caption:"Kenangan 8D"},
+  {src:"https://ziperrimg2.lovable.app/f/jhgsddm6oj.mp4",caption:"Kenangan 8D"},
+  {src:"https://ziperrimg2.lovable.app/f/fvr4g2cq26.mp4",caption:"Kenangan 8D"},
+  {src:"https://ziperrimg2.lovable.app/f/tw33pgd5vr.mp4",caption:"Kenangan 8D"},
+  {src:"https://files.catbox.moe/7q3wqa.mp4",caption:"Kenangan 8D"},
+  {src:"https://files.catbox.moe/7yctnw.mp4",caption:"Kenangan 8D"}
+ ],
+
+ lagu:[
+  {
+   judul:"Cintakan membawamu kembali",
+   artis:"Dewa 19",
+   src:"https://ziperrimg2.lovable.app/f/zmhxqgm5of.m4a",
+   cover:"https://files.catbox.moe/rjgifl.jpg"
+  },
+  {
+   judul:"Kisah Klasik",
+   artis:"Sheila On 7",
+   src:"https://files.catbox.moe/u0z9v2.m4a",
+   cover:"https://files.catbox.moe/rjgifl.jpg"
+  },
+  {
+   judul:"Tujuh Belas",
+   artis:"Tulus",
+   src:"https://files.catbox.moe/u5xdsa.m4a",
+   cover:"https://files.catbox.moe/rjgifl.jpg"
+  },
+  {
+   judul:"Anak Sekolah",
+   artis:"Chrisye",
+   src:"https://files.catbox.moe/wcfuok.mp3",
+   cover:"https://files.catbox.moe/rjgifl.jpg"
+  }
+ ],
+
+ credits:["Kelas 8D","Rafi"]
+};
+</script>
+
+<style>
+:root{
+ --pink:#f7b8d0;
+ --rose:#dc789e;
+ --purple:#35234f;
+ --night:#17132d;
+ --gold:#f3d6a0;
+ --white:#fff8f7;
+}
+
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+}
+
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+ font-family:"Plus Jakarta Sans",sans-serif;
+ background:var(--night);
+ color:var(--white);
+ overflow-x:hidden;
+ padding-bottom:115px;
+}
+
+button{
+ font:inherit;
+ border:0;
+ cursor:pointer;
+ color:inherit;
+}
+
+a{
+ color:inherit;
+ text-decoration:none;
+}
+
+img,video{
+ max-width:100%;
+}
+
+/* =========================
+   INTRO FANTASY
+========================= */
+
+#intro{
+ position:fixed;
+ inset:0;
+ z-index:100;
+ display:grid;
+ place-items:center;
+ overflow:hidden;
+ background:#21152f;
+ color:white;
+ opacity:1;
+ visibility:visible;
+ transition:
+  opacity 2.5s ease,
+  filter 2.5s ease,
+  visibility 2.5s ease;
+}
+
+#intro.gone{
+ opacity:0;
+ visibility:hidden;
+ filter:blur(12px);
+ pointer-events:none;
+}
+
+#iv{
+ position:absolute;
+ inset:0;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ z-index:0;
+ opacity:.12;
+ pointer-events:none;
+}
+
+.intro-scene{
+ position:absolute;
+ inset:0;
+ overflow:hidden;
+ background:
+  radial-gradient(ellipse at 50% 35%,#f6a9c6aa,transparent 45%),
+  linear-gradient(180deg,#292043 0%,#70466d 42%,#d987a3 72%,#352345 100%);
+}
+
+.sun{
+ position:absolute;
+ width:220px;
+ height:220px;
+ border-radius:50%;
+ background:linear-gradient(#ffe3d0,#f6a7ba);
+ top:19%;
+ left:50%;
+ transform:translateX(-50%);
+ box-shadow:0 0 100px #ffb9d788;
+}
+
+.mountain{
+ position:absolute;
+ bottom:0;
+ width:100%;
+ height:48%;
+ background:#30213f;
+ clip-path:polygon(
+  0 50%,12% 32%,24% 49%,37% 20%,50% 48%,
+  65% 18%,79% 47%,91% 25%,100% 42%,
+  100% 100%,0 100%
+ );
+}
+
+.mountain.back{
+ height:42%;
+ background:#594064;
+ opacity:.8;
+ transform:scaleX(1.15);
+}
+
+.torii{
+ position:absolute;
+ bottom:13%;
+ left:50%;
+ transform:translateX(-50%);
+ width:180px;
+ height:150px;
+ opacity:.9;
+}
+
+.torii:before,
+.torii:after{
+ content:"";
+ position:absolute;
+ background:#4a203d;
+}
+
+.torii:before{
+ width:210px;
+ height:13px;
+ left:-15px;
+ top:12px;
+ border-radius:8px;
+ box-shadow:0 14px #4a203d;
+}
+
+.torii:after{
+ width:13px;
+ height:145px;
+ left:28px;
+ top:13px;
+ box-shadow:110px 0 #4a203d;
+}
+
+.torii span{
+ position:absolute;
+ top:55px;
+ left:0;
+ width:180px;
+ height:8px;
+ background:#4a203d;
+}
+
+.petals{
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+}
+
+.petal{
+ position:absolute;
+ top:-30px;
+ width:10px;
+ height:15px;
+ border-radius:100% 0 100% 0;
+ background:#ffd3e3;
+ animation:fall linear infinite;
+ opacity:.8;
+}
+
+@keyframes fall{
+ to{
+  transform:translate(120px,110vh) rotate(720deg);
+ }
+}
+
+.intro-shade{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(
+  0deg,
+  #17132d 0%,
+  transparent 50%,
+  #17132d55
+ );
+}
+
+.gate{
+ position:relative;
+ z-index:3;
+ text-align:center;
+ padding:25px;
+}
+
+.eyebrow{
+ font-size:10px;
+ letter-spacing:6px;
+ color:#ffe0d2;
+ margin-bottom:18px;
+}
+
+.gate h1{
+ font:800 clamp(55px,15vw,110px)/1 "Cinzel",serif;
+ letter-spacing:5px;
+ background:linear-gradient(
+  180deg,
+  #fff,
+  #ffd5df 50%,
+  #e9a8c7
+ );
+ color:transparent;
+ background-clip:text;
+ text-shadow:0 0 50px #ffb7d477;
+ animation:titleIn 1.5s both;
+}
+
+@keyframes titleIn{
+ from{
+  opacity:0;
+  transform:translateY(35px);
+  letter-spacing:18px;
+ }
+}
+
+.gate .subline{
+ font:12px "Cinzel";
+ letter-spacing:4px;
+ color:#f9d9df;
+ margin-top:13px;
+}
+
+.fpw{
+ position:relative;
+ width:112px;
+ height:112px;
+ margin:42px auto 0;
+}
+
+.fp{
+ width:100%;
+ height:100%;
+ border-radius:50%;
+ border:1px solid #ffe5e8aa;
+ background:linear-gradient(145deg,#ffffff35,#ffffff08);
+ backdrop-filter:blur(15px);
+ box-shadow:
+  0 0 35px #f8b8d655,
+  inset 0 0 25px #fff2;
+ display:grid;
+ place-items:center;
+ animation:pulse 2s infinite;
+ touch-action:none;
+ -webkit-user-select:none;
+ user-select:none;
+ -webkit-touch-callout:none;
+}
+
+.fp svg{
+ width:43px;
+ height:43px;
+ fill:none;
+ stroke:#fff;
+ stroke-width:1.4;
+ pointer-events:none;
+}
+
+@keyframes pulse{
+ 50%{
+  box-shadow:
+   0 0 0 18px #f7b8d000,
+   0 0 40px #f8b8d988;
+ }
+}
+
+.ring{
+ position:absolute;
+ inset:-8px;
+ width:128px;
+ height:128px;
+ transform:rotate(-90deg);
+ pointer-events:none;
+}
+
+.ring circle{
+ fill:none;
+ stroke:#ffffff40;
+ stroke-width:2;
+}
+
+.ring .progress{
+ stroke:#ffe0e9;
+ stroke-dasharray:1;
+ stroke-dashoffset:1;
+ stroke-width:3;
+}
+
+.scan .progress{
+ animation:scan 1.5s linear forwards;
+}
+
+@keyframes scan{
+ to{stroke-dashoffset:0}
+}
+
+#st{
+ font-size:12px;
+ letter-spacing:1px;
+ color:#ffe7eb;
+ margin-top:20px;
+}
+
+#intro .hint{
+ font-size:10px;
+ color:#e9cbd8;
+ margin-top:9px;
+ letter-spacing:2px;
+}
+
+#intro,
+#intro *{
+ -webkit-user-select:none;
+ user-select:none;
+ -webkit-touch-callout:none;
+}
+
+/* =========================
+   NAVIGASI
+========================= */
+
+#app{
+ display:none;
+}
+
+body.on #app{
+ display:block;
+ animation:appear 1.2s both;
+}
+
+body.on #nav,
+body.on #player{
+ display:flex;
+}
+
+@keyframes appear{
+ from{
+  opacity:0;
+  transform:translateY(25px);
+ }
+}
+
+#nav{
+ display:none;
+ position:fixed;
+ z-index:30;
+ top:12px;
+ left:12px;
+ right:12px;
+ max-width:700px;
+ margin:auto;
+ align-items:center;
+ justify-content:space-between;
+ padding:15px 20px;
+ border:1px solid #ffffff35;
+ border-radius:30px;
+ background:#21182fc9;
+ backdrop-filter:blur(18px);
+ box-shadow:0 10px 40px #08051355;
+}
+
+#nav b{
+ font:700 25px "Cinzel";
+ color:#ffcfdb;
+}
+
+#nav div{
+ display:flex;
+ gap:20px;
+}
+
+#nav a{
+ font-size:13px;
+ color:#f7dce4;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.wrap{
+ max-width:1050px;
+ padding:0 20px;
+ margin:auto;
+}
+
+.hero{
+ min-height:100svh;
+ position:relative;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+ align-items:flex-start;
+ padding:120px 0 55px;
+ overflow:hidden;
+}
+
+.hero-bg{
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ background:
+  linear-gradient(
+   0deg,
+   #17132d 0%,
+   #17132d22 65%,
+   #17132d88 100%
+  ),
+  radial-gradient(
+   ellipse at 50% 30%,
+   #e99bb8 0%,
+   #795078 40%,
+   #29203e 85%
+  );
+}
+
+.hero-bg:before{
+ content:"";
+ position:absolute;
+ inset:0;
+ opacity:.5;
+ background:linear-gradient(
+  130deg,
+  transparent 35%,
+  #ffd4e533 50%,
+  transparent 65%
+ );
+ animation:shine 9s ease-in-out infinite alternate;
+}
+
+@keyframes shine{
+ to{transform:translateX(10%)}
+}
+
+.hero h1{
+ font:800 clamp(55px,15vw,125px)/.95 "Cinzel";
+ letter-spacing:2px;
+ color:#ffe1e8;
+ text-shadow:0 5px 35px #f5a7c577;
+}
+
+.hero .label{
+ font-size:10px;
+ letter-spacing:4px;
+ color:#f7c5d7;
+ margin-bottom:16px;
+}
+
+.hero p{
+ font-size:14px;
+ color:#f3dce5;
+ margin-top:14px;
+}
+
+.hero small{
+ font-size:11px;
+ color:#d9bdcc;
+ margin-top:7px;
+}
+
+.hero-thumbnail{
+ position:relative;
+ width:100%;
+ height:clamp(220px,38vw,390px);
+ border-radius:25px;
+ overflow:hidden;
+ margin-bottom:35px;
+ border:1px solid #ffffff55;
+ box-shadow:0 20px 70px #09061588;
+ background:linear-gradient(140deg,#332340,#a35c81,#e4a1b8);
+}
+
+.hero-thumbnail video{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
+}
+
+.hero-thumbnail:after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:linear-gradient(0deg,#17132d99,transparent 65%);
+ pointer-events:none;
+}
+
+.hero-thumbnail .thumb-title{
+ position:absolute;
+ z-index:2;
+ bottom:22px;
+ left:25px;
+ font:700 clamp(24px,6vw,48px) "Cinzel";
+ color:#fff0f3;
+ text-shadow:0 3px 20px #17132d;
+}
+
+.go{
+ display:grid;
+ place-items:center;
+ margin-top:25px;
+ width:48px;
+ height:48px;
+ border:1px solid #ffffff55;
+ border-radius:50%;
+ color:#ffe1e8;
+ font-size:22px;
+ animation:float 2s infinite;
+}
+
+@keyframes float{
+ 50%{transform:translateY(8px)}
+}
+
+/* =========================
+   KELAS
+========================= */
+
+section{
+ padding:70px 0 15px;
+}
+
+.section-title{
+ margin-bottom:25px;
+}
+
+.section-title small{
+ font-size:10px;
+ letter-spacing:4px;
+ color:#e8a9c3;
+}
+
+.section-title h2{
+ font:700 clamp(28px,7vw,45px) "Cinzel";
+ color:#ffe2e9;
+ margin:8px 0;
+}
+
+.section-title p{
+ font-size:13px;
+ color:#cdb8ce;
+}
+
+.cards{
+ display:grid;
+ grid-template-columns:repeat(
+  auto-fit,
+  minmax(min(100%,300px),1fr)
+ );
+ gap:17px;
+}
+
+.card{
+ padding:23px;
+ border-radius:23px;
+ background:linear-gradient(
+  145deg,
+  #ffffff13,
+  #ffffff06
+ );
+ border:1px solid #ffffff20;
+ box-shadow:0 18px 45px #08051233;
+ backdrop-filter:blur(12px);
+}
+
+.teacher{
+ display:flex;
+ gap:15px;
+ align-items:center;
+ margin-bottom:20px;
+}
+
+.avatar{
+ width:65px;
+ height:65px;
+ flex:none;
+ border-radius:19px;
+ overflow:hidden;
+ display:grid;
+ place-items:center;
+ background:#9b668c;
+ color:white;
+ font-weight:800;
+}
+
+.avatar img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.card h3{
+ font-size:17px;
+ color:#ffe1e8;
+}
+
+.card p{
+ font-size:12px;
+ color:#d2bdce;
+}
+
+.info{
+ padding:12px;
+ margin-top:9px;
+ border-radius:13px;
+ background:#ffffff0d;
+ font-size:12px;
+ color:#f6dce7;
+}
+
+.motto{
+ margin-top:15px;
+ padding:15px;
+ border-left:3px solid #eaa6c1;
+ color:#ffe2e9;
+ font-size:13px;
+}
+
+.tree{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:10px;
+ margin-top:18px;
+}
+
+.person{
+ min-width:125px;
+ text-align:center;
+ padding:15px 10px;
+ border:1px solid #ffffff2a;
+ border-radius:17px;
+ background:#ffffff0b;
+}
+
+.person b{
+ display:block;
+ font-size:13px;
+ color:#ffe3eb;
+}
+
+.person small{
+ font-size:10px;
+ color:#d7a9c1;
+}
+
+/* =========================
+   ALBUM
+========================= */
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(
+  auto-fill,
+  minmax(145px,1fr)
+ );
+ grid-auto-rows:150px;
+ gap:12px;
+}
+
+.tile{
+ position:relative;
+ overflow:hidden;
+ border-radius:17px;
+ border:1px solid #ffffff22;
+ background:#34263f;
+}
+
+.tile img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
+ cursor:pointer;
+}
+
+.tile:nth-child(3n+1){
+ grid-row:span 2;
+}
+
+.grid.video{
+ grid-template-columns:repeat(
+  auto-fill,
+  minmax(min(100%,260px),1fr)
+ );
+ grid-auto-rows:auto;
+}
+
+.grid.video .tile{
+ aspect-ratio:16/10;
+}
+
+.grid.video .tile:nth-child(n){
+ grid-row:auto;
+}
+
+.tile figcaption{
+ position:absolute;
+ bottom:0;
+ left:0;
+ right:0;
+ padding:20px 12px 10px;
+ background:linear-gradient(transparent,#17132ddd);
+ font-size:11px;
+ z-index:2;
+ pointer-events:none;
+}
+
+.subheading{
+ font:600 18px "Cinzel";
+ color:#f6c6d7;
+ margin:30px 0 15px;
+}
+
+/* =========================
+   VIDEO ALBUM
+========================= */
+
+.video-tile{
+ position:relative;
+ overflow:hidden;
+ background:#17132d;
+ aspect-ratio:16/10;
+}
+
+.video-tile video{
+ width:100%;
+ height:100%;
+ display:block;
+ object-fit:cover;
+ border:0;
+ outline:none;
+ background:#17132d;
+}
+
+/* Hilangkan kontrol browser */
+.video-tile video::-webkit-media-controls,
+.video-tile video::-webkit-media-controls-start-playback-button{
+ display:none!important;
+}
+
+.video-loading{
+ position:absolute;
+ inset:0;
+ display:grid;
+ place-items:center;
+ padding:20px;
+ color:#f8dce8;
+ background:linear-gradient(145deg,#332340,#21182f);
+ font-size:12px;
+ text-align:center;
+ z-index:1;
+ pointer-events:none;
+}
+
+.video-ready .video-loading{
+ display:none;
+}
+
+.video-error .video-loading{
+ display:grid;
+ background:#241a35;
+ color:#ffd5e4;
+}
+
+.video-sound{
+ position:absolute;
+ z-index:5;
+ top:10px;
+ right:10px;
+ width:36px;
+ height:36px;
+ border-radius:50%;
+ background:#241a35dd;
+ border:1px solid #ffffff44;
+ font-size:15px;
+ backdrop-filter:blur(10px);
+}
+
+/* =========================
+   CREDITS
+========================= */
+
+.credit-card{
+ text-align:center;
+ padding:25px 15px;
+}
+
+.credit-icon{
+ width:52px;
+ height:52px;
+ display:grid;
+ place-items:center;
+ margin:0 auto 14px;
+ border-radius:50%;
+ background:#ffffff12;
+ border:1px solid #ffffff25;
+ color:#f7b8d0;
+ font-size:22px;
+}
+
+footer{
+ padding:55px 0 25px;
+ text-align:center;
+ color:#d2b8cc;
+ font-size:11px;
+}
+
+footer span{
+ color:#f4c1d4;
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+#lb{
+ position:fixed;
+ inset:0;
+ z-index:90;
+ background:#120e20ee;
+ display:none;
+ place-items:center;
+ padding:20px;
+}
+
+#lb.show{
+ display:grid;
+}
+
+#lb img{
+ max-width:100%;
+ max-height:85vh;
+ border-radius:16px;
+}
+
+/* =========================
+   PEMUTAR MUSIK
+========================= */
+
+#player{
+ display:none;
+ position:fixed;
+ z-index:40;
+ bottom:12px;
+ left:12px;
+ right:12px;
+ width:min(440px,calc(100% - 24px));
+ margin:auto;
+ flex-direction:column;
+ gap:10px;
+ padding:13px;
+ border:1px solid #ffffff30;
+ border-radius:22px;
+ background:rgba(39,25,55,.97);
+ backdrop-filter:blur(20px);
+ box-shadow:0 15px 55px #09051299;
+ overflow:hidden;
+}
+
+.player-top{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ min-width:0;
+}
+
+.cover{
+ width:43px;
+ height:43px;
+ border-radius:50%;
+ object-fit:cover;
+ background:#72506e;
+ flex:none;
+}
+
+.track{
+ flex:1;
+ min-width:0;
+}
+
+.track b,
+.track small{
+ display:block;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
+
+.track b{
+ font-size:12px;
+ color:#ffe4ec;
+}
+
+.track small{
+ font-size:10px;
+ color:#c8aec5;
+}
+
+.icon-btn{
+ width:42px;
+ height:42px;
+ flex:none;
+ border-radius:13px;
+ background:#ffffff12;
+ color:#ffe1eb;
+ font-size:23px;
+}
+
+.controls{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:clamp(17px,5vw,28px);
+}
+
+.controls button{
+ width:34px;
+ height:38px;
+ display:grid;
+ place-items:center;
+ background:transparent;
+ color:#f8d8e5;
+ font-size:19px;
+}
+
+.controls .mainplay{
+ width:44px;
+ height:44px;
+ border-radius:50%;
+ background:#ee91b9;
+ color:#28182e;
+ font-size:19px;
+}
+
+#seek{
+ width:100%;
+ height:5px;
+ accent-color:#ee91b9;
+ cursor:pointer;
+}
+
+/* FIX PLAYLIST PUTIH */
+#playlist{
+ display:none;
+ flex-direction:column;
+ gap:5px;
+ max-height:165px;
+ overflow-y:auto;
+ padding:5px 0;
+ background:transparent!important;
+ scrollbar-width:thin;
+ scrollbar-color:#bd83aa transparent;
+}
+
+#player.open #playlist{
+ display:flex;
+}
+
+#playlist .song{
+ display:block;
+ width:100%;
+ min-height:43px;
+ padding:12px 14px;
+ border-radius:13px;
+ border:1px solid transparent;
+ background:rgba(255,255,255,.07)!important;
+ color:#f6dce9!important;
+ font-size:12px;
+ text-align:left;
+ opacity:1;
+ white-space:normal;
+}
+
+#playlist .song.active{
+ background:rgba(226,151,190,.23)!important;
+ border-color:rgba(238,177,205,.35);
+ color:#fff!important;
+}
+
+#playlist .song:active{
+ background:rgba(226,151,190,.3)!important;
+}
+
+#player button{
+ -webkit-tap-highlight-color:transparent;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+ .wrap{
+  padding:0 16px;
+ }
+
+ #nav{
+  padding:12px 15px;
+ }
+
+ #nav b{
+  font-size:20px;
+ }
+
+ #nav div{
+  gap:13px;
+ }
+
+ #nav a{
+  font-size:11px;
+ }
+
+ .hero{
+  min-height:90svh;
+ }
+
+ .hero-thumbnail{
+  height:235px;
+ }
+
+ .grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-auto-rows:135px;
+ }
+
+ .grid.video{
+  grid-template-columns:1fr;
+ }
+
+ #player{
+  bottom:10px;
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,
+ *:before,
+ *:after{
+  animation-duration:.01ms!important;
+  transition-duration:.01ms!important;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="intro">
+
+ <div class="intro-scene">
+  <div class="sun"></div>
+  <div class="mountain back"></div>
+  <div class="torii"><span></span></div>
+  <div class="mountain"></div>
+  <div class="petals" id="petals"></div>
+  <div class="intro-shade"></div>
+ </div>
+
+ <video id="iv" autoplay muted loop playsinline></video>
+
+ <div class="gate">
+
+  <div class="eyebrow">
+   A PLACE FULL OF MEMORIES
+  </div>
+
+  <h1>8DREAM</h1>
+
+  <div class="subline">
+   CLASS OF 2026 — 2027
+  </div>
+
+  <div class="fpw">
+
+   <svg class="ring" viewBox="0 0 128 128">
+    <circle cx="64" cy="64" r="60"/>
+    <circle class="progress" cx="64" cy="64" r="60" pathLength="1"/>
+   </svg>
+
+   <button class="fp" id="fp" aria-label="Tahan untuk masuk">
+    <svg viewBox="0 0 24 24">
+     <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4M14 13v4c0 2-.4 3.5-1 5M17 13v5M2 12a10 10 0 0 1 18-6M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2M9 6.8a6 6 0 0 1 9 5.2v2"/>
+    </svg>
+   </button>
+
+  </div>
+
+  <p id="st">Sentuh dan tahan untuk masuk</p>
+  <div class="hint">HOLD TO ENTER</div>
+
+ </div>
+</div>
+
+<!-- =========================
+     NAVIGASI
+========================= -->
+
+<nav id="nav">
+ <b>8DREAM</b>
+
+ <div>
+  <a href="#kelas">Kelas</a>
+  <a href="#album">Album</a>
+  <a href="#credits">Credits</a>
+ </div>
+</nav>
+
+<!-- =========================
+     HALAMAN UTAMA
+========================= -->
+
+<main id="app">
+
+ <header class="hero wrap">
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-thumbnail" id="thumb">
+   <div class="thumb-title">OUR STORY</div>
+  </div>
+
+  <div class="label">
+   WELCOME TO OUR LITTLE WORLD
+  </div>
+
+  <h1>8DREAM</h1>
+
+  <p id="tagline"></p>
+  <small id="label"></small>
+
+  <a class="go" href="#kelas">↓</a>
+
+ </header>
+
+ <div class="wrap">
+
+  <!-- KELAS -->
+
+  <section id="kelas">
+
+   <div class="section-title">
+    <small>THE PEOPLE BEHIND OUR STORY</small>
+    <h2>Our Class</h2>
+    <p>Orang-orang yang membuat kelas ini menjadi rumah kedua.</p>
+   </div>
+
+   <div class="cards">
+
+    <article class="card" id="teacher"></article>
+
+    <article class="card">
+     <h3>Struktur Kelas</h3>
+     <p>Susunan pengurus kelas 8D.</p>
+     <div class="tree" id="tree"></div>
+    </article>
+
+   </div>
+
+  </section>
+
+  <!-- ALBUM -->
+
+  <section id="album">
+
+   <div class="section-title">
+    <small>FRAGMENTS OF TIME</small>
+    <h2>Our Memories</h2>
+    <p>Setiap foto punya cerita yang tidak ingin kita lupakan.</p>
+   </div>
+
+   <h3 class="subheading">✦ Foto Kelas</h3>
+   <div class="grid" id="photos"></div>
+
+   <h3 class="subheading">✦ Video Kenangan</h3>
+   <div class="grid video" id="videos"></div>
+
+  </section>
+
+  <!-- CREDITS -->
+
+  <section id="credits">
+
+   <div class="section-title">
+    <small>THE PEOPLE BEHIND THIS WEBSITE</small>
+    <h2>Credits</h2>
+    <p>Terima kasih kepada semua yang menjadi bagian dari cerita 8D.</p>
+   </div>
+
+   <div class="cards" id="credit-list"></div>
+
+  </section>
+
+  <footer>
+   Made with <span>♥</span> by 8Dream
+  </footer>
+
+ </div>
+</main>
+
+<!-- LIGHTBOX -->
+
+<div id="lb">
+ <img alt="Foto kenangan">
+</div>
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<aside id="player">
+
+ <div class="player-top">
+
+  <img
+   class="cover"
+   id="cover"
+   src="https://files.catbox.moe/rjgifl.jpg"
+   alt="Cover lagu"
+  >
+
+  <div class="track">
+   <b id="songTitle">Belum ada lagu</b>
+   <small id="songArtist">8Dream music</small>
+  </div>
+
+  <button
+   id="togglePlaylist"
+   class="icon-btn"
+   aria-label="Daftar lagu"
+  >☷</button>
+
+ </div>
+
+ <input
+  type="range"
+  id="seek"
+  min="0"
+  max="100"
+  value="0"
+ >
+
+ <div class="controls">
+  <button id="shuffle" aria-label="Acak">⤨</button>
+  <button id="prev" aria-label="Sebelumnya">◀|</button>
+  <button class="mainplay" id="play" aria-label="Putar">▶</button>
+  <button id="next" aria-label="Berikutnya">|▶</button>
+  <button id="repeat" aria-label="Ulangi">↻</button>
+ </div>
+
+ <div id="playlist"></div>
+
+</aside>
+
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+/* =========================
+   UTILITAS
+========================= */
+
+const $=id=>document.getElementById(id);
+const C=CONFIG;
+
+document.title=C.namaKelas;
+
+$("tagline").textContent=C.tagline;
+$("label").textContent=C.label;
+
+/* =========================
+   PETALS
+========================= */
+
+function makePetals(){
+ const box=$("petals");
+
+ for(let i=0;i<28;i++){
+  const p=document.createElement("i");
+
+  p.className="petal";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(7+Math.random()*12)+"s";
+  p.style.animationDelay=(-Math.random()*15)+"s";
+  p.style.opacity=.3+Math.random()*.6;
+  p.style.transform=`scale(${.5+Math.random()})`;
+
+  box.appendChild(p);
+ }
+}
+
+makePetals();
+
+/* =========================
+   INTRO VIDEO
+========================= */
+
+if(C.introVideo){
+ const introVideo=$("iv");
+
+ introVideo.src=C.introVideo;
+ introVideo.muted=true;
+ introVideo.play().catch(()=>{});
+}
+
+/* =========================
+   THUMBNAIL VIDEO
+========================= */
+
+if(C.thumbnailVideo){
+ const v=document.createElement("video");
+
+ v.src=C.thumbnailVideo;
+ v.autoplay=true;
+ v.muted=true;
+ v.loop=true;
+ v.playsInline=true;
+ v.preload="metadata";
+
+ $("thumb").prepend(v);
+
+ v.play().catch(()=>{});
+}
+
+/* =========================
+   WALI KELAS
+========================= */
+
+const W=C.walikelas;
+
+$("teacher").innerHTML=`
+ <div class="teacher">
+
+  <div class="avatar">
+   ${
+    W.foto
+    ?`<img src="${W.foto}" alt="Wali kelas">`
+    :"8D"
+   }
+  </div>
+
+  <div>
+   <p>${W.jabatan}</p>
+   <h3>${W.nama}</h3>
+  </div>
+
+ </div>
+
+ <div class="info">
+  ▣ Mata pelajaran: ${W.mapel}
+ </div>
+
+ <div class="info">
+  ♙ Jumlah siswa: ${W.jumlahSiswa} siswa
+ </div>
+
+ <div class="motto">
+  “${W.motto}”
+ </div>
+`;
+
+/* =========================
+   STRUKTUR KELAS
+========================= */
+
+$("tree").innerHTML=C.struktur.map(p=>`
+ <div class="person">
+  <small>${p.peran}</small>
+  <b>${p.nama}</b>
+ </div>
+`).join("");
+
+/* =========================
+   ALBUM FOTO DAN VIDEO
+========================= */
+
+function tile(src,i,type){
+
+ const o=typeof src==="string"?{src}:src||{};
+
+ if(!o.src)return "";
+
+ const isVideo=/\.(mp4|webm|mov)(\?|#|$)/i.test(o.src);
+
+ if(isVideo){
+
+  return `
+   <figure class="tile video-tile">
+
+    <video
+     src="${o.src}"
+     muted
+     autoplay
+     loop
+     playsinline
+     webkit-playsinline
+     preload="auto"
+     disablepictureinpicture
+     controlslist="nodownload noplaybackrate"
+     class="album-video"
+    ></video>
+
+    <div class="video-loading">
+     Memuat video...
+    </div>
+
+    <button
+     class="video-sound"
+     type="button"
+     aria-label="Aktifkan suara"
+    >🔇</button>
+
+    <figcaption>
+     ${o.caption||"Kenangan 8D"}
+    </figcaption>
+
+   </figure>
+  `;
+ }
+
+ return `
+  <figure class="tile">
+   <img
+    src="${o.src}"
+    alt="${o.caption||"Foto kenangan"}"
+    loading="lazy"
+   >
+  </figure>
+ `;
+}
+
+/* TAMPILKAN ALBUM */
+
+$("photos").innerHTML=C.foto
+ .map((x,i)=>tile(x,i,"Foto"))
+ .join("");
+
+$("videos").innerHTML=C.video
+ .map((x,i)=>tile(x,i,"Video"))
+ .join("");
+
+/* =========================
+   VIDEO AUTOPLAY OBSERVER
+========================= */
+
+const videoObserver=new IntersectionObserver(entries=>{
+
+ entries.forEach(entry=>{
+
+  const video=entry.target;
+  const card=video.closest(".video-tile");
+
+  if(entry.isIntersecting){
+
+   video.muted=true;
+
+   video.play().then(()=>{
+    card.classList.add("video-ready");
+    card.classList.remove("video-error");
+   }).catch(()=>{
+    card.classList.add("video-error");
+   });
+
+  }else{
+
+   video.pause();
+
+  }
+
+ });
+
+},{
+ threshold:.3
+});
+
+/* PASANG OBSERVER */
+
+document.querySelectorAll(".album-video").forEach(video=>{
+
+ const card=video.closest(".video-tile");
+
+ video.addEventListener("playing",()=>{
+  card.classList.add("video-ready");
+  card.classList.remove("video-error");
+ });
+
+ video.addEventListener("waiting",()=>{
+  if(!video.readyState){
+   card.classList.remove("video-ready");
+  }
+ });
+
+ video.addEventListener("error",()=>{
+  card.classList.add("video-error");
+
+  const loading=card.querySelector(".video-loading");
+
+  if(loading){
+   loading.textContent="Video tidak dapat dimuat. Periksa tautan video.";
+  }
+ });
+
+ videoObserver.observe(video);
+
+ video.play().catch(()=>{});
+
+});
+
+/* =========================
+   TOMBOL SUARA VIDEO
+========================= */
+
+$("videos").addEventListener("click",e=>{
+
+ const btn=e.target.closest(".video-sound");
+
+ if(!btn)return;
+
+ const video=btn.parentElement.querySelector("video");
+
+ video.muted=!video.muted;
+
+ btn.textContent=video.muted?"🔇":"🔊";
+
+});
+
+/* =========================
+   LIGHTBOX FOTO
+========================= */
+
+document.addEventListener("click",e=>{
+
+ const img=e.target.closest(".tile img");
+
+ if(img){
+
+  $("lb").querySelector("img").src=img.src;
+  $("lb").classList.add("show");
+
+ }
+
+});
+
+$("lb").onclick=()=>{
+ $("lb").classList.remove("show");
+};
+
+/* =========================
+   CREDITS
+========================= */
+
+$("credit-list").innerHTML=C.credits.map((name,i)=>`
+
+ <article class="card credit-card">
+
+  <div class="credit-icon">
+   ${i===0?"✦":"♡"}
+  </div>
+
+  <h3>${name}</h3>
+
+  <p>
+   ${i===0?"Class 8D":"Website creator"}
+  </p>
+
+ </article>
+
+`).join("");
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+
+const audio=$("audio");
+
+let songs=C.lagu.slice();
+let index=0;
+let shuffle=false;
+let repeat=false;
+
+/* DAFTAR LAGU */
+
+function renderList(){
+
+ $("playlist").innerHTML=songs.map((s,i)=>`
+
+  <button
+   class="song ${i===index?"active":""}"
+   data-index="${i}"
+   type="button"
+  >
+   ${s.judul} — ${s.artis}
+  </button>
+
+ `).join("");
+
+}
+
+/* PILIH LAGU */
+
+function loadSong(i,autoplay=true){
+
+ if(!songs.length)return;
+
+ index=(i+songs.length)%songs.length;
+
+ const s=songs[index];
+
+ audio.pause();
+ audio.src=s.src;
+ audio.load();
+
+ $("songTitle").textContent=s.judul;
+ $("songArtist").textContent=s.artis;
+ $("cover").src=s.cover||"";
+
+ $("seek").value=0;
+
+ renderList();
+
+ if(autoplay){
+
+  audio.play().catch(()=>{
+   $("play").textContent="▶";
+  });
+
+ }
+
+}
+
+/* NEXT SONG */
+
+function nextSong(){
+
+ let n=index+1;
+
+ if(shuffle&&songs.length>1){
+
+  do{
+   n=Math.floor(Math.random()*songs.length);
+  }while(n===index);
+
+ }
+
+ loadSong(n);
+
+}
+
+/* PLAY PAUSE */
+
+$("play").onclick=()=>{
+
+ if(!songs.length)return;
+
+ if(!audio.src){
+
+  loadSong(0);
+
+ }else if(audio.paused){
+
+  audio.play().catch(()=>{});
+
+ }else{
+
+  audio.pause();
+
+ }
+
+};
+
+/* NEXT PREVIOUS */
+
+$("next").onclick=nextSong;
+
+$("prev").onclick=()=>{
+ loadSong(index-1);
+};
+
+/* SHUFFLE */
+
+$("shuffle").onclick=()=>{
+
+ shuffle=!shuffle;
+
+ $("shuffle").style.color=
+  shuffle?"#ffb6d1":"#f8d8e5";
+
+};
+
+/* REPEAT */
+
+$("repeat").onclick=()=>{
+
+ repeat=!repeat;
+
+ audio.loop=repeat;
+
+ $("repeat").style.color=
+  repeat?"#ffb6d1":"#f8d8e5";
+
+};
+
+/* PLAYLIST */
+
+$("togglePlaylist").onclick=()=>{
+
+ $("player").classList.toggle("open");
+
+};
+
+/* PILIH LAGU */
+
+$("playlist").addEventListener("click",e=>{
+
+ const btn=e.target.closest("[data-index]");
+
+ if(!btn)return;
+
+ loadSong(Number(btn.dataset.index));
+
+});
+
+/* PLAYBACK */
+
+audio.addEventListener("play",()=>{
+ $("play").textContent="Ⅱ";
+});
+
+audio.addEventListener("pause",()=>{
+ $("play").textContent="▶";
+});
+
+audio.addEventListener("ended",()=>{
+
+ if(!repeat){
+  nextSong();
+ }
+
+});
+
+/* PROGRESS */
+
+audio.addEventListener("timeupdate",()=>{
+
+ if(audio.duration){
+
+  $("seek").value=
+   audio.currentTime/audio.duration*100;
+
+ }
+
+});
+
+$("seek").addEventListener("input",e=>{
+
+ if(audio.duration){
+
+  audio.currentTime=
+   e.target.value/100*audio.duration;
+
+ }
+
+});
+
+/* INISIALISASI */
+
+renderList();
+
+if(C.autoPlayLagu&&songs.length){
+ loadSong(0,false);
+}
+
+/* =========================
+   FINGERPRINT INTRO
+========================= */
+
+let scanning=false;
+let entered=false;
+let timer=null;
+
+const fp=$("fp");
+
+function startScan(e){
+
+ if(entered||scanning)return;
+
+ if(e.pointerType==="mouse"&&e.button!==0)return;
+
+ e.preventDefault();
+
+ scanning=true;
+
+ fp.closest(".gate").classList.add("scan");
+
+ $("st").textContent="Memindai akses...";
+
+ timer=setTimeout(finish,1500);
+
+}
+
+function cancelScan(){
+
+ if(!scanning||entered)return;
+
+ clearTimeout(timer);
+
+ scanning=false;
+
+ fp.closest(".gate").classList.remove("scan");
+
+ $("st").textContent="Sentuh dan tahan untuk masuk";
+
+}
+
+function finish(){
+
+ if(!scanning||entered)return;
+
+ scanning=false;
+ entered=true;
+
+ $("st").textContent="Akses diterima";
+
+ /*
+  Tampilkan halaman utama terlebih dahulu.
+  Intro tetap di depan sebentar agar transisi halus.
+ */
+
+ document.body.classList.add("on");
+
+ /*
+  Mulai musik setelah interaksi pengguna.
+ */
+
+ if(C.autoPlayLagu&&songs.length){
+
+  loadSong(0,true);
+
+ }
+
+ /*
+  Intro memudar secara bertahap.
+ */
+
+ requestAnimationFrame(()=>{
+
+  setTimeout(()=>{
+
+   $("intro").classList.add("gone");
+
+  },500);
+
+ });
+
+ setTimeout(()=>{
+
+  $("intro").remove();
+
+ },3200);
+
+}
+
+/* EVENT SIDIK JARI */
+
+fp.addEventListener("pointerdown",startScan);
+
+fp.addEventListener("pointerup",cancelScan);
+
+fp.addEventListener("pointercancel",cancelScan);
+
+fp.addEventListener("lostpointercapture",cancelScan);
+
+/* CEGAH SALIN TEKS DAN MENU KONTEKS INTRO */
+
+["copy","cut","contextmenu","selectstart"].forEach(eventName=>{
+
+ $("intro").addEventListener(eventName,e=>{
+
+  e.preventDefault();
+  e.stopPropagation();
+
+ });
+
+});
+
+fp.addEventListener("click",e=>{
+
+ e.preventDefault();
+ e.stopPropagation();
+
+});
+
+</script>
+
+</body>
+</html>
